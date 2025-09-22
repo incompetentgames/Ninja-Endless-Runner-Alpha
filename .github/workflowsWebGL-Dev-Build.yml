@@ -1,6 +1,8 @@
 name: Build project
 
-on: [push, pull_request]
+on: 
+schedule:
+    - cron: '30 4 * * 1' # Every Monday at 10:00 AM IST
 
 jobs:
   buildForAllSupportedPlatforms:
@@ -10,12 +12,6 @@ jobs:
       fail-fast: false
       matrix:
         targetPlatform:
-          - StandaloneOSX # Build a macOS standalone (Intel 64-bit).
-          - StandaloneWindows # Build a Windows standalone.
-          - StandaloneWindows64 # Build a Windows 64-bit standalone.
-          - StandaloneLinux64 # Build a Linux 64-bit standalone.
-          - iOS # Build an iOS player.
-          - Android # Build an Android .apk standalone app.
           - WebGL # WebGL.
     steps:
       - uses: actions/checkout@v4
@@ -35,6 +31,7 @@ jobs:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
+          unityVersion: 6000.2.2f1
           targetPlatform: ${{ matrix.targetPlatform }}
           buildProfile: 'Assets/Settings/Build Profiles/WebGL-Development - Mobile - Development.asset'
       - uses: actions/upload-artifact@v4

@@ -2,13 +2,19 @@ using UnityEngine;
 
 public class PlayerControls : MonoBehaviour
 {
+    private Rigidbody2D rb;
     // Update is called once per frame
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
     void Update()
     {
         //if jump was pressed this frame
         if (InputManager.instance.jumpWasPressed)
         {
-           Debug.Log("Jump Was Pressed");
+            float jumpForce = 5f;
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
 
         //if jump is being held

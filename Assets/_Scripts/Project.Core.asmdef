@@ -2,7 +2,8 @@
     "name": "Project.Core",
     "rootNamespace": "",
     "references": [
-        "GUID:5784a8ac634b1c84390a0a26f9089191"
+        "GUID:5784a8ac634b1c84390a0a26f9089191",
+        "GUID:75469ad4d38634e559750d17036d5f7c"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
